@@ -5,8 +5,9 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
- * VoxGuard design system — dark audio-forensics console.
- * Deep slate surfaces, cyan signal accent, explicit risk/verdict tokens.
+ * VoxGuard design system — light audio-forensics console.
+ * Cream canvas, pale sage panels, deep forest-green accent,
+ * explicit risk/verdict tokens.
  * All colours are semantic tokens; never hardcode colours in components.
  */
 
