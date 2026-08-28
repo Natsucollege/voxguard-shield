@@ -5,8 +5,9 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
- * VoxGuard design system — dark audio-forensics console.
- * Deep slate surfaces, cyan signal accent, explicit risk/verdict tokens.
+ * VoxGuard design system — light audio-forensics console.
+ * Cream canvas, pale sage panels, deep forest-green accent,
+ * explicit risk/verdict tokens.
  * All colours are semantic tokens; never hardcode colours in components.
  */
 
@@ -69,60 +70,59 @@
 :root {
   --radius: 0.5rem;
 
-  --background: oklch(0.17 0.018 250);
-  --foreground: oklch(0.94 0.008 240);
+  /* Cream canvas */
+  --background: oklch(0.93 0.02 120);
+  --foreground: oklch(0.3 0.045 150);
 
-  --surface: oklch(0.215 0.019 250);
-  --card: oklch(0.215 0.019 250);
-  --card-foreground: oklch(0.94 0.008 240);
-  --popover: oklch(0.2 0.019 250);
-  --popover-foreground: oklch(0.94 0.008 240);
+  /* Pale sage panels */
+  --surface: oklch(0.96 0.015 125);
+  --card: oklch(0.96 0.015 125);
+  --card-foreground: oklch(0.3 0.045 150);
+  --popover: oklch(0.96 0.015 125);
+  --popover-foreground: oklch(0.3 0.045 150);
 
-  --primary: oklch(0.79 0.13 190);
-  --primary-foreground: oklch(0.18 0.02 245);
+  /* Deep forest green primary */
+  --primary: oklch(0.4 0.06 150);
+  --primary-foreground: oklch(0.95 0.02 120);
 
-  --secondary: oklch(0.26 0.02 250);
-  --secondary-foreground: oklch(0.92 0.008 240);
+  --secondary: oklch(0.89 0.025 130);
+  --secondary-foreground: oklch(0.35 0.05 150);
 
-  --muted: oklch(0.26 0.02 250);
-  --muted-foreground: oklch(0.68 0.016 245);
+  --muted: oklch(0.89 0.025 130);
+  --muted-foreground: oklch(0.5 0.035 145);
 
-  --accent: oklch(0.29 0.03 225);
-  --accent-foreground: oklch(0.93 0.01 235);
+  --accent: oklch(0.86 0.04 135);
+  --accent-foreground: oklch(0.32 0.05 150);
 
-  --destructive: oklch(0.62 0.19 25);
-  --destructive-foreground: oklch(0.97 0.01 240);
+  --destructive: oklch(0.55 0.18 25);
+  --destructive-foreground: oklch(0.97 0.01 120);
 
-  --border: oklch(0.99 0 0 / 11%);
-  --input: oklch(0.99 0 0 / 14%);
-  --ring: oklch(0.79 0.13 190);
+  --border: oklch(0.35 0.05 150 / 14%);
+  --input: oklch(0.35 0.05 150 / 18%);
+  --ring: oklch(0.4 0.06 150);
 
-  --verdict-real: oklch(0.78 0.15 162);
-  --verdict-fake: oklch(0.66 0.2 20);
+  --verdict-real: oklch(0.45 0.09 160);
+  --verdict-fake: oklch(0.55 0.18 25);
 
-  --risk-low: oklch(0.78 0.15 162);
-  --risk-medium: oklch(0.83 0.15 92);
-  --risk-high: oklch(0.74 0.17 52);
-  --risk-critical: oklch(0.66 0.2 20);
+  --risk-low: oklch(0.45 0.09 160);
+  --risk-medium: oklch(0.62 0.13 92);
+  --risk-high: oklch(0.58 0.16 52);
+  --risk-critical: oklch(0.52 0.19 20);
 
-  --chart-1: oklch(0.79 0.13 190);
-  --chart-2: oklch(0.78 0.15 162);
-  --chart-3: oklch(0.83 0.15 92);
-  --chart-4: oklch(0.74 0.17 52);
-  --chart-5: oklch(0.66 0.2 20);
+  --chart-1: oklch(0.4 0.06 150);
+  --chart-2: oklch(0.45 0.09 160);
+  --chart-3: oklch(0.62 0.13 92);
+  --chart-4: oklch(0.58 0.16 52);
+  --chart-5: oklch(0.52 0.19 20);
 
-  --sidebar: oklch(0.195 0.019 250);
-  --sidebar-foreground: oklch(0.9 0.01 240);
-  --sidebar-primary: oklch(0.79 0.13 190);
-  --sidebar-primary-foreground: oklch(0.18 0.02 245);
-  --sidebar-accent: oklch(0.26 0.02 250);
-  --sidebar-accent-foreground: oklch(0.93 0.01 235);
-  --sidebar-border: oklch(0.99 0 0 / 10%);
-  --sidebar-ring: oklch(0.79 0.13 190);
-}
-
-.dark {
-  color-scheme: dark;
+  --sidebar: oklch(0.9 0.025 128);
+  --sidebar-foreground: oklch(0.3 0.045 150);
+  --sidebar-primary: oklch(0.4 0.06 150);
+  --sidebar-primary-foreground: oklch(0.95 0.02 120);
+  --sidebar-accent: oklch(0.86 0.04 135);
+  --sidebar-accent-foreground: oklch(0.32 0.05 150);
+  --sidebar-border: oklch(0.35 0.05 150 / 12%);
+  --sidebar-ring: oklch(0.4 0.06 150);
 }
 
 @layer base {
@@ -131,7 +131,7 @@
   }
 
   html {
-    color-scheme: dark;
+    color-scheme: light;
   }
 
   body {
@@ -160,8 +160,8 @@
 @utility grid-surface {
   background-color: var(--color-surface);
   background-image:
-    linear-gradient(to right, oklch(0.99 0 0 / 0.04) 1px, transparent 1px),
-    linear-gradient(to bottom, oklch(0.99 0 0 / 0.04) 1px, transparent 1px);
+    linear-gradient(to right, oklch(0.35 0.05 150 / 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, oklch(0.35 0.05 150 / 0.05) 1px, transparent 1px);
   background-size: 28px 28px;
 }
 
