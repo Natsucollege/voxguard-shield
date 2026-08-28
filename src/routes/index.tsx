@@ -1,4 +1,4 @@
-import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 import { toast } from "sonner";
 import { AudioUploader, type UploadState } from "@/components/AudioUploader";
@@ -109,12 +109,6 @@ function UploadPage() {
             <span className="eyebrow text-primary">Upload audio</span>
             <h2 className="mt-1 text-xl font-semibold">Submit a recording</h2>
           </div>
-          <Link
-            to="/dashboard"
-            className="rounded-md border border-border px-3 py-1.5 text-xs text-muted-foreground transition-colors hover:text-foreground"
-          >
-            Dashboard
-          </Link>
         </div>
 
         <AudioUploader
