@@ -9,6 +9,7 @@ import {
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
 
+import { Toaster } from "@/components/ui/sonner";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 
@@ -77,19 +78,22 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "VoxGuard — AI Voice Forensics" },
+      {
+        name: "description",
+        content: "Detect AI-generated or manipulated voices with deepfake scoring and audio forensics.",
+      },
+      { name: "author", content: "VoxGuard" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@Lovable" },
     ],
     links: [
+      { rel: "stylesheet", href: appCss },
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: appCss,
+        href: "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap",
       },
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
     ],
@@ -102,7 +106,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" className="dark">
       <head>
         <HeadContent />
       </head>
@@ -114,13 +118,58 @@ function RootShell({ children }: { children: ReactNode }) {
   );
 }
 
+function SiteHeader() {
+  return (
+    <header className="sticky top-0 z-30 border-b border-border bg-background/85 backdrop-blur">
+      <div className="mx-auto flex w-full max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6">
+        <Link to="/" className="flex items-center gap-3">
+          <span className="grid size-8 place-items-center rounded-md bg-primary text-sm font-bold text-primary-foreground">
+            V
+          </span>
+          <span className="leading-tight">
+            <strong className="block text-sm font-semibold tracking-[0.18em]">VOXGUARD</strong>
+            <small className="text-[10px] tracking-[0.2em] text-muted-foreground">AI VOICE FORENSICS</small>
+          </span>
+        </Link>
+        <nav className="flex items-center gap-1 text-sm">
+          {(
+            [
+              ["Analyze", "/"],
+              ["Dashboard", "/dashboard"],
+            ] as const
+          ).map(([label, to]) => (
+            <Link
+              key={label}
+              to={to}
+              activeOptions={{ exact: true }}
+              className="rounded-md px-3 py-1.5 text-muted-foreground transition-colors hover:text-foreground"
+              activeProps={{ className: "bg-secondary text-foreground font-medium" }}
+            >
+              {label}
+            </Link>
+          ))}
+        </nav>
+      </div>
+    </header>
+  );
+}
+
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
+      <div className="flex min-h-screen flex-col">
+        <SiteHeader />
+        {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+        <main className="flex-1">
+          <Outlet />
+        </main>
+        <footer className="border-t border-border px-4 py-5 text-center text-xs text-muted-foreground sm:px-6">
+          VoxGuard reports AI voice probability and detection confidence — not absolute proof.
+        </footer>
+      </div>
+      <Toaster position="top-right" />
     </QueryClientProvider>
   );
 }
